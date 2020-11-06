@@ -2,6 +2,7 @@
 <html>
 <link rel = "stylesheet" href = "{{ asset('css/dropdown.css') }}"></link>
 <!-- <link rel = "stylesheet" href = "{{ asset('css/app.css') }}"></link> -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <style>
 	body
 	{

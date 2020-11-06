@@ -1,4 +1,4 @@
-<table id = "monthStat" align="center" style="border:1px solid black;">
+<table class="table table-inverse" id = "monthStat" align="center" style="border:1px solid black;">
 	<thead>
 		<tr>
 			<th>№</th>

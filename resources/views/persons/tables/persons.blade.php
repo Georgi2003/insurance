@@ -1,6 +1,6 @@
 <h1>Такси</h1>
 	<br>
-	<table id = "statistics" align="center" style="border:1px solid black;">
+	<table class="table table-inverse" id = "statistics" align="center" style="border:1px solid black;">
 		<thead>
 			<tr>
 				<th>№</th>
