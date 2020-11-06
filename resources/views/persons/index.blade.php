@@ -12,34 +12,19 @@
 	<title></title>
 </head>
 <body>
-	<h1>Формули</h1>
-	<br>
-	<table align="center" style="border:1px solid black;">
-		<thead>
-			<tr>
-				<th>№</th>
-				<th>Име</th>
-				<th>Възраст</th>
-				<th>Телефон</th>
-				<th>Месечна такса</th>
-				<th>Месец</th>
-			</tr>
-		</thead>
+	<button id="statisticsTable">Обща статистика</button>
+	<button id="monthStatistics">Месечна статистика</button>
+	<button id="personStatistics">Статистика по хора</button>
 
-		<tbody>
-			@foreach($allPersons as $persons)
-			<tr>
-				<td>{{ $loop->iteration }}</td>	
-				<td>{{ $persons->name }}</td>
-				<td>{{ $persons->age }}</td>
-				<td>{{ $persons->phone }}</td>
-				<td>{{ $persons->monthly_fee }}</td>
-				<td>{{ $persons->month }}</td>
-			</tr>
-			@endforeach
-		</tbody>
-	</table>
+	@include('persons.tables.persons')
 	<br>
 	@include('persons.create')
+	<br>
+	@include('persons.tables.sumMonth')
+	<br>
+	@include('persons.tables.sumName')
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src = "{{ asset('js/table.js') }}"></script>
 </html>

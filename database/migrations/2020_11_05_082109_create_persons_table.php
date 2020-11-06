@@ -18,7 +18,7 @@ class CreatePersonsTable extends Migration
             $table->string('name');
             $table->Integer('age');
             $table->Integer('phone');
-            $table->Integer('monthly_fee');
+            $table->Double('monthly_fee');
             $table->string('month');
         });
     }

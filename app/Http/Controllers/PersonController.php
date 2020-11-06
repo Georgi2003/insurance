@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Person;
 use Illuminate\Http\Request;
-use DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\PersonImport;
 
 class PersonController extends Controller
 {
@@ -17,8 +18,18 @@ class PersonController extends Controller
     {
         $persons = Person::all();
 
+        $sumMounth = Person::select('month', Person::raw('SUM(monthly_fee) as sum'))
+                ->groupBy('month')
+                ->get();
+
+        $sumNames = Person::select('name', Person::raw('SUM(monthly_fee) as sum'))
+                ->groupBy('name')
+                ->get();
+
         return view('persons.index', [
-            'allPersons' => $persons
+            'allPersons' => $persons,
+            'sumMounths' =>  $sumMounth,
+            'sumNames' =>  $sumNames
         ]);
     }
 
@@ -40,10 +51,6 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-       /* $pdo = DB::connection()->getPdo();
-        $file = $request['file'];
-        $sql = "LOAD DATA INFILE 'D:$file' INTO TABLE persons FIELDS TERMINATED BY ',' IGNORE 1 ROWS (`name`,`age`,`phone`,`monthly_fee`)";
-        $pdo->exec($sql);*/
         $person = new Person;
         $month = $request['month'];
         $fileName = $_FILES['file']['tmp_name'];
@@ -87,7 +94,7 @@ class PersonController extends Controller
             }
 
         Person::insert($personsData);
-        
+        //Excel::import(new PersonImport, $_FILES['file']['tmp_name']);
         return redirect('/persons');
     }
 
@@ -136,4 +143,4 @@ class PersonController extends Controller
         //
     }
 }
-// https://phppot.com/php/import-csv-file-into-mysql-using-php/
+// https://www.positronx.io/laravel-import-expert-excel-and-csv-file-tutorial-with-example/

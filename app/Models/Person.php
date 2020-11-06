@@ -10,4 +10,6 @@ class Person extends Model
 	public $table = "persons";
     public $incrementing = true;
     public $timestamps = false;
+
+    protected $fillable = ['name', 'age', 'phone', 'monthly_fee'];
 }
